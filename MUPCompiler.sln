@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MUPCompiler", "MUPCompiler.vcxproj", "{B00AC348-1DEF-41E1-8385-05BF7FE71189}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MUPCompilerUtil", "MUPCompilerUtil.vcxproj", "{B71C74F9-D233-4496-991E-9453C5FD0ADE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B00AC348-1DEF-41E1-8385-05BF7FE71189}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B00AC348-1DEF-41E1-8385-05BF7FE71189}.Debug|Win32.Build.0 = Debug|Win32
+		{B00AC348-1DEF-41E1-8385-05BF7FE71189}.Release|Win32.ActiveCfg = Release|Win32
+		{B00AC348-1DEF-41E1-8385-05BF7FE71189}.Release|Win32.Build.0 = Release|Win32
+		{B71C74F9-D233-4496-991E-9453C5FD0ADE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B71C74F9-D233-4496-991E-9453C5FD0ADE}.Debug|Win32.Build.0 = Debug|Win32
+		{B71C74F9-D233-4496-991E-9453C5FD0ADE}.Release|Win32.ActiveCfg = Release|Win32
+		{B71C74F9-D233-4496-991E-9453C5FD0ADE}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

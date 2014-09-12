@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{bf3be62c-2cc7-4237-819a-53000c4046d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object">
+      <UniqueIdentifier>{e6a595c4-3f02-4aec-927a-7178961cf459}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mucmdlineparser.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="mupcommon.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="mupdeclarestream.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="mupvar.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="mupdefinestream.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="mupfile.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="mupimport.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="mupobject.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="mupscript.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="mupmodule.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="mupconfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mupconsolehelper.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="mupprecompiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mupcompilerutil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="mucmdlineparser.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="mupcommon.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="mupvar.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="mupscript.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="mupobject.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="mupimport.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="mupmodule.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="mupconsolehelper.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="mupprecompiler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mupcompilerutil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mupcompilerutilapi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="mupcompilerutil.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

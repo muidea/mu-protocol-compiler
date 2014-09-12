@@ -1,0 +1,18 @@
+LIBRARY
+
+EXPORTS
+	outputInvalidSyntaxInfoImpl @1     NONAME    
+	initParserImpl @2     NONAME    
+	getNextFileImpl @3     NONAME    
+	finalParserImpl @4     NONAME    
+	appendTagImpl @5     NONAME    
+	parsePackageImpl @6     NONAME    
+	parseImportImpl @7     NONAME    
+	parseBaseImpl @8     NONAME    
+	parseVarImpl @9     NONAME    
+	parseStructImpl @10     NONAME    
+	parseClassImpl @11     NONAME    
+	parseListImpl @12     NONAME    
+	parseVectorImpl @13     NONAME    
+	parseAssignImpl @14     NONAME    
+	parseScriptImpl @15     NONAME    

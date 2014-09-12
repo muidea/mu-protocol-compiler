@@ -1,0 +1,14 @@
+
+				类 型(16bit)	|  大小(32bit)		|  数值（n×8bit）
+
+  int	:		286				|  4					| 4×8bit
+  long：		287				|  4					| 4×8bit
+  float：		280				|  4					| 4×8bit
+  double：	272				|  8					| 8×8bit
+  bool：		260				|  1					| 1×8bit
+  char：		264				|  1					| 1×8bit
+  string：	330				|  n					| n×8bit
+  mustruct：328			|  n					| n×8bit
+  mulist：	329				|  n					| n×8bit
+
+  import 顶级目录 或 当前文件的子目录
