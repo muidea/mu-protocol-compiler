@@ -61,8 +61,8 @@ def UpdateConfig(configFileName):
 	currentTime = time.localtime()
 	buildTime = time.strftime("%Y-%m-%d %H:%M:%S",currentTime)
 	author = 'muidea@gmail.com'
-	product = 'mupcompiler, Copyright (c) muidea.com.  All rights reserved.'
-	version = 'v1.2.0'
+	product = 'power by mupcompiler.'
+	version = 'v1.0.0'
 	configFile = open(configFileName,'w')
 	
 	WritePrecomplieBegin(configFile, currentTime)

@@ -52,12 +52,12 @@ std::string CMUPBase::getCalcSizeString() const
 
 std::string CMUPBase::getDecodeString() const
 {
-    return getDefineString() + "::decode(pDataPtr, uDataSize, uRemainSize)";
+    return getDefineString() + "::decode((char*)pDataPtr + uDataSize - uRemainSize, uRemainSize, uRemainSize)";
 }
 
 std::string CMUPBase::getEncodeString() const
 {
-    return getDefineString() + "::encode(pBuffPtr, uBuffSize, uRemainSize)";
+    return getDefineString() + "::encode((char*)pBuffPtr + uBuffSize - uRemainSize, uRemainSize, uRemainSize)";
 }
 
 CMUPModule::CMUPModule( )
@@ -165,7 +165,7 @@ std::string CMUPModule::structDeclare( ) const
 
     os << "inline UINT32 getSize(" << MUP_PREFLAG << getName() << " const& value)\n";
     os << "{\n";
-    os << "    UINT32 uRet = 0;\n\n";
+    os << "    UINT32 uRet = sizeof(UINT32);\n\n";
     vIter = _varList.begin();
     for ( ; vIter != _varList.end(); ++vIter)
     {
@@ -177,7 +177,16 @@ std::string CMUPModule::structDeclare( ) const
 
     os << "inline bool encode(" << MUP_PREFLAG << getName() << " const& value, void* pBuffPtr, UINT32 uBuffSize, UINT32& uRemainSize)\n";
     os << "{\n";
-    os << "    bool bRet = false;\n\n";
+    os << "    bool bRet = false;\n";
+	os << "    UINT32 uPacketSize = getSize(value);\n";
+	os << "    if (uBuffSize < uPacketSize) {\n";
+	os << "        return false;\n";
+	os << "    }\n";
+	os << "    uRemainSize = uBuffSize;\n";
+	os << "    bRet = MUPProtocol::encode(uPacketSize, (char*)pBuffPtr + uBuffSize - uRemainSize, uRemainSize, uRemainSize);\n";
+	os << "    if (!bRet) {\n";
+	os << "        return bRet;\n";
+	os << "    }\n\n";
     vIter = _varList.begin();
     for ( ; vIter != _varList.end(); ++vIter)
     {
@@ -192,7 +201,13 @@ std::string CMUPModule::structDeclare( ) const
 
     os << "inline bool decode(const void* pDataPtr, UINT32 uDataSize, " << MUP_PREFLAG << getName() << "& value, UINT32& uRemainSize)\n";
     os << "{\n";
-    os << "    bool bRet = false;\n\n";
+    os << "    bool bRet = false;\n";
+	os << "    UINT32 uPacketSize = 0;\n";
+	os << "    uRemainSize = uDataSize;\n";
+	os << "    bRet = MUPProtocol::decode((char*)pDataPtr + uDataSize - uRemainSize, uRemainSize, uPacketSize, uRemainSize);\n";
+	os << "    if (!bRet || (uPacketSize > uDataSize)) {\n";
+	os << "        return bRet;\n";
+	os << "    }\n\n";
     vIter = _varList.begin();
     for ( ; vIter != _varList.end(); ++vIter)
     {
@@ -202,6 +217,7 @@ std::string CMUPModule::structDeclare( ) const
         os << "        return bRet;\n";
         os << "    }\n\n";
     }
+	os << "    uRemainSize = uDataSize - uPacketSize;\n";
     os << "    return bRet;\n";
     os << "};\n\n";
     return os.str();
@@ -379,7 +395,15 @@ std::string CMUPModule::classEncodeDefine( ) const
     os << "bool " << MUP_PREFLAG << getName() << "::encode(void* pBuffPtr, UINT32 uBuffSize, UINT32& uRemainSize) const\n";
     os << "{\n";
     os << "    bool bRet = true;\n";
-
+	os << "    UINT32 uPacketSize = calcSize();\n";
+	os << "    if (uBuffSize < uPacketSize) {\n";
+	os << "        return false;\n";
+	os << "    }\n";
+	os << "    uRemainSize = uBuffSize;\n";
+	os << "    bRet = MUPProtocol::encode(uPacketSize, (char*)pBuffPtr + uBuffSize - uRemainSize, uRemainSize, uRemainSize);\n";
+	os << "    if (!bRet) {\n";
+	os << "        return bRet;\n";
+	os << "    }\n\n";
     CMUPBase* base = getBase();
     if (NULL != base)
     {
@@ -387,10 +411,6 @@ std::string CMUPModule::classEncodeDefine( ) const
         os << "    if (!bRet) {\n";
         os << "        return bRet;\n";
         os << "    }\n\n";
-    }
-    else
-    {
-        os << "    uRemainSize = uBuffSize;\n\n";
     }
 
     std::list<CMUPVar*>::const_iterator vIter = _varList.begin();
@@ -414,17 +434,20 @@ std::string CMUPModule::classDecodeDefine( ) const
     os << "bool " << MUP_PREFLAG << getName() << "::decode(const void* pDataPtr, UINT32 uDataSize, UINT32& uRemainSize)\n";
     os << "{\n";
     os << "    bool bRet = true;\n";
+	os << "    UINT32 uPacketSize = 0;\n";
+	os << "    uRemainSize = uDataSize;\n";
+	os << "    bRet = MUPProtocol::decode((char*)pDataPtr + uDataSize - uRemainSize, uRemainSize, uPacketSize, uRemainSize);\n";
+	os << "    if (!bRet || (uPacketSize > uDataSize)) {\n";
+	os << "        return bRet;\n";
+	os << "    }\n\n";
+
     CMUPBase* base = getBase();
     if (NULL != base)
     {
-    os << "    bRet = " << base->getDecodeString() << ";\n";
-    os << "    if (!bRet) {\n";
-    os << "        return bRet;\n";
-    os << "    }\n\n";
-    }
-    else
-    {
-    os << "    uRemainSize = uDataSize;\n\n";
+		os << "    bRet = " << base->getDecodeString() << ";\n";
+		os << "    if (!bRet) {\n";
+		os << "        return bRet;\n";
+		os << "    }\n\n";
     }
 
     std::list<CMUPVar*>::const_iterator vIter = _varList.begin();
@@ -436,6 +459,7 @@ std::string CMUPModule::classDecodeDefine( ) const
         os << "        return bRet;\n";
         os << "    }\n\n";
     }
+	os << "    uRemainSize = uDataSize - uPacketSize;\n";
     os << "    return bRet;\n";
     os << "}\n\n";
 
@@ -448,7 +472,7 @@ std::string CMUPModule::classPureDecodeDefine() const
     os << "bool " << MUP_PREFLAG << getName() << "::pureDecode(const void* pDataPtr, UINT32 uDataSize, UINT32& uRemainSize)\n";
     os << "{\n";
     os << "    bool bRet = true;\n";
-    os << "    uRemainSize = uDataSize;\n\n";
+	os << "    uRemainSize = uDataSize - sizeof(UINT32);\n\n";
 
     std::list<CMUPVar*>::const_iterator vIter = _varList.begin();
     for ( ; vIter != _varList.end(); ++vIter)
@@ -470,7 +494,7 @@ std::string CMUPModule::classCalcSizeDefine( ) const
     std::stringstream os;
     os << "UINT32 " << MUP_PREFLAG << getName() << "::calcSize() const\n";
     os << "{\n";
-    os << "    UINT32 uRet = 0;\n";
+    os << "    UINT32 uRet = sizeof(UINT32);\n";
     CMUPBase* base = getBase();
     if (NULL != base)
     {

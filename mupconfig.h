@@ -1,5 +1,5 @@
-#ifndef __MUPCONFIG_H_2358__
-#define __MUPCONFIG_H_2358__
+#ifndef __MUPCONFIG_H_1046__
+#define __MUPCONFIG_H_1046__
 
 #define COPYRIGHT_DECLARE \
 "//\n\
@@ -15,13 +15,13 @@
 //\n"
 
 #define PRODUCT_DECLARE \
-"mupcompiler, Copyright (c) muidea.com.  All rights reserved."
+"Power by mupcompiler."
 
 #define VERSION_DECLARE \
-"Version: v1.2.0"
+"Version: v1.0.0"
 
 #define BUILD_TIME_DECLARE \
-"Build: 2014-01-18 23:58:35"
+"Build: 2016-02-24 10:46:16"
 
 #define AUTHOR_DECLARE \
 "Author: muidea@gmail.com"
