@@ -11,11 +11,6 @@
 #ifndef __MUSERIALIZE_H_2242__
 #define __MUSERIALIZE_H_2242__
 
-#ifdef WIN32
-#include <winsock2.h>
-#include <windows.h>
-#endif // WIN32
-
 #include <string>
 #include <list>
 #include <vector>
@@ -23,6 +18,8 @@
 #include <assert.h>
 
 #if defined(_MSC_VER)
+#include <winsock2.h>
+#include <windows.h>
 
 typedef __int64 INT64;
 typedef unsigned __int64 UINT64;
